@@ -3,19 +3,24 @@ import PropTypes from "prop-types";
 import { formatDistanceToNow } from "date-fns";
 import StarRatingCard from "./StarRatingCard";
 import React from "react";
+import userData from "../../../../Data/userData.json";
 
 const formatDate = (date) => {
   return formatDistanceToNow(new Date(date)) + " ago";
 };
 
 const StudentFeedbackCard = ({ feedback }) => {
-  const { imageURL, name, date, feedback: feedbackText, rating } = feedback;
+  const { date, feedback: feedbackText, rating } = feedback;
+  const { name, profileImg } = userData.find(
+    (user) => user.userID === feedback.userID
+  );
+  console.log(name, profileImg)
   return (
     <div className={style.mainContainer}>
       <div
         className={style.imageContainer}
         style={{
-          background: `url(${imageURL}) lightgray 50% / cover no-repeat`,
+          background: `url(${profileImg}) lightgray 50% / cover no-repeat`,
         }}
       ></div>
       <div className={style.feedbackContainer}>

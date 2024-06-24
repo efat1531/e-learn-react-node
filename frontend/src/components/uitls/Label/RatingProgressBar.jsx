@@ -3,30 +3,17 @@ import StarRatingCard from "../Cards/StarRatingCard";
 import PropTypes from "prop-types";
 import React from "react";
 
-const ratingQuantity = {
-  5: 0,
-  4: 0,
-  3: 0,
-  2: 0,
-  1: 0,
-};
 
-const calculateParcentage = (value) => {
-  const total = Object.values(ratingQuantity).reduce(
-    (acc, cur) => acc + cur,
-    0
-  );
-
-  return (ratingQuantity[value] / total) * 100 || 0.001;
-};
-
-const calculateProgressWidth = (value) => {
+const calculateProgressWidth = (value, parcentage) => {
   const maxWidth = 23.5;
-  const width = calculateParcentage(value);
+  const width = parcentage;
   return (width / 100) * maxWidth;
 };
 
-const RatingProgressBar = ({ value }) => {
+const RatingProgressBar = ({ reviews, value }) => {
+  const ratingQuantity = reviews.filter((review) => review.rating === value).length;
+  const percentage = (ratingQuantity / reviews.length) * 100;
+
   return (
     <div className={style.ratingProgress}>
       <div className={style.starRating}>
@@ -37,11 +24,11 @@ const RatingProgressBar = ({ value }) => {
         <div className={style.progressBar}></div>
         <div
           className={style.progressBarMain}
-          style={{ width: `${calculateProgressWidth(value)}rem` }}
+          style={{ width: `${calculateProgressWidth(value, percentage)}rem` }}
         ></div>
         <div className={style.progressValue}>
-          {calculateParcentage(value) >= 1
-            ? `${calculateParcentage(value).toFixed(0)}%`
+          {percentage >= 1
+            ? `${percentage.toFixed(0)}%`
             : "< 1%"}
         </div>
       </div>
@@ -50,6 +37,7 @@ const RatingProgressBar = ({ value }) => {
 };
 
 RatingProgressBar.propTypes = {
+  reviews: PropTypes.array.isRequired,
   value: PropTypes.number.isRequired,
 };
 

@@ -13,7 +13,7 @@ const HeroImage1 = () => {
           <button className={style.btn}>Learn More</button>
         </div>
         <div className={style.imageClip}>
-          <img src="/src/assets/images/HeroImage01.jpeg" alt="Hero Image 01" />
+          <img src="/assets/images/HeroImage01.jpeg" alt="Hero Image 01" />
         </div>
       </div>
     </div>

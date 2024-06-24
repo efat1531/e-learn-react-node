@@ -15,7 +15,6 @@ import PropType from "prop-types";
 import userData from "../../../Data/userData.json";
 
 const SingleCourse = ({ course }) => {
-  console.log(course);
   const instructorInfo = userData.find(
     (users) => users.userID === course.instructor
   );
@@ -30,8 +29,8 @@ const SingleCourse = ({ course }) => {
       <CourseCurriculam curriculam={course.curriculam} />
       <TeacherInfo instructorInfo={instructorInfo} />
       <WriteReview />
-      <CourseRating />
-      <StudentsRating />
+      <CourseRating courseID={course.id}/>
+      <StudentsRating courseID={course.id} />
     </div>
   );
 };

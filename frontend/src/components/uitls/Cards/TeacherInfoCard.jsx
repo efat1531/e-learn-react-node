@@ -2,12 +2,35 @@ import style from "./TeacherInfoCard.module.css";
 
 import { useState, React } from "react";
 import PropTypes from "prop-types";
+import reviewData from "../../../../Data/reviewData.json";
+import courseData from "../../../../Data/courseData.json"
 
 import IconTextLabel from "../../uitls/Label/IconTextLabel";
 
+const getTotalRating = (instructorID) => {
+  const courses = courseData.filter((course) => course.instructor === instructorID);
+  const courseIDs = courses.map((course) => course.id);
+  const reviews = reviewData.filter((review) => courseIDs.includes(review.courseID));
+  const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
+  return (totalRating / reviews.length).toFixed(1);
+}
+
+const totalStudents = (instructorID) => {
+  const courses = courseData.filter((course) => course.instructor === instructorID);
+  const totalStudents = courses.reduce((acc, course) => acc + course.students, 0);
+  return totalStudents;
+}
+
+const totalCourse = (instructorID) => {
+  const courses = courseData.filter((course) => course.instructor === instructorID);
+  return courses.length;
+}
+
 const TeacherInfoCard = ({ instructorInfo }) => {
   const { name, profileImg, designation, bio } = instructorInfo;
+  console.log(instructorInfo)
   const [isExpanded, setIsExpanded] = useState(false);
+
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
@@ -32,7 +55,7 @@ const TeacherInfoCard = ({ instructorInfo }) => {
               height: "1.25rem",
               fill: "#FD8E1F",
             }}
-            text="4.5 Ratings"
+            text={`${getTotalRating(instructorInfo.userID)} Rating`}
             textStyle={{
               color: "#4E5566",
               fontFamily: "Inter",
@@ -50,7 +73,7 @@ const TeacherInfoCard = ({ instructorInfo }) => {
               height: "1.25rem",
               stroke: "#564FFD",
             }}
-            text="1000 Students"
+            text={`${totalStudents(instructorInfo.userID)} Students`}
             textStyle={{
               color: "#4E5566",
               fontFamily: "Inter",
@@ -68,7 +91,7 @@ const TeacherInfoCard = ({ instructorInfo }) => {
               height: "1.25rem",
               fill: "#564FFD",
             }}
-            text="9 Course"
+            text={`${totalCourse(instructorInfo.userID)} Courses`}
             textStyle={{
               color: "#4E5566",
               fontFamily: "Inter",

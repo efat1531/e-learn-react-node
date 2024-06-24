@@ -25,26 +25,26 @@ const NavList = () => {
           Contact
         </NavLink>
       </li>
-      <li className={style.li}>
+      {/* <li className={style.li}>
         <NavLink to="/resources" className={style.a}>
           Resourses
         </NavLink>
-      </li>
+      </li> */}
       <li className={style.li}>
         <NavLink to="/courses" className={style.a}>
           Courses
         </NavLink>
       </li>
-      <li className={style.li}>
+      {/* <li className={style.li}>
         <NavLink to="/shop" className={style.a}>
           Shop
         </NavLink>
-      </li>
-      <li className={style.li}>
+      </li> */}
+      {/* <li className={style.li}>
         <NavLink to="/blog" className={style.a}>
           Blog
         </NavLink>
-      </li>
+      </li> */}
       <li className={style.li}>
         <NavLink to="/become-an-instructor" className={style.a}>
           Become an Instructor

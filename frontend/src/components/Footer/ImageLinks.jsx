@@ -2,7 +2,7 @@ import style from "./ImageLinks.module.css";
 import Proptypes from "prop-types";
 import React from "react";
 
-const iconURL = "src/assets/svg/";
+const iconURL = "/assets/svg/";
 
 const ImageLinks = ({ social }) => {
   return (

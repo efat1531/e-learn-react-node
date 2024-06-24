@@ -92,7 +92,7 @@ const Footer = () => {
           </a>
           . Developed by{" "}
           <a href="#" className={style.developer}>
-            Alpha Coders
+            Efat Sikder
           </a>
           . Designed by Templatecookie.
         </div>

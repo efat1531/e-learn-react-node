@@ -5,7 +5,7 @@ const HeroImage2 = () => {
   return (
     <div className={style.heroImage2}>
       <div className={style.imageClip}>
-        <img src="/src/assets/images/HeroImage02.jpeg" alt="Hero Image 02" />
+        <img src="/assets/images/HeroImage02.jpeg" alt="Hero Image 02" />
       </div>
       <div className={style.textGroup}>
         <h3 className={style.headerText}>Speak Clearly, Conquer Globally</h3>

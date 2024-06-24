@@ -5,57 +5,10 @@ import StudentFeedbackCard from "../../components/uitls/Cards/StudentFeedbackCar
 import Divider from "../../components/uitls/Divider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import reviewData from "../../../Data/reviewData.json"
+import PropTypes from "prop-types";
 
-const ratings = [
-  {
-    rating: 4,
-    imageURL: "https://picsum.photos/seed/picsum/1200/1000.jpg",
-    name: "John Doe",
-    date: new Date("2024-06-10"),
-    feedback:
-      "This course is really helpful. I learned a lot from this course.",
-  },
-  {
-    rating: 3,
-    imageURL: "https://picsum.photos/seed/picsum3/1200/1000.jpg",
-    name: "Mike Lee",
-    date: new Date("2024-06-11"),
-    feedback:
-      "The course covered the basics well, but I was hoping for more advanced topics.",
-  },
-  {
-    rating: 1,
-    imageURL: "https://picsum.photos/seed/picsum4/1200/1000.jpg",
-    name: "Alice Johnson",
-    date: new Date("2024-06-12"),
-    feedback:
-      "The course material was outdated and the instructor was difficult to understand. Disappointed.",
-  },
-  {
-    rating: 2,
-    imageURL: "https://picsum.photos/seed/picsum5/1200/1000.jpg",
-    name: "David Kim",
-    date: new Date("2024-06-13"),
-    feedback:
-      "The course content seemed good, but there were some missing details that made it difficult to follow along at times. I would recommend this with reservations.&apos;",
-  },
-  {
-    rating: 4,
-    imageURL: "https://picsum.photos/seed/picsum6/1200/1000.jpg",
-    name: "Sarah Garcia",
-    date: new Date("2024-06-14"),
-    feedback:
-      "This course was clear and well-organized. I learned a lot of the core concepts. However, some additional practice exercises or real-world examples would have been helpful for better understanding.",
-  },
-  {
-    rating: 4,
-    imageURL: "https://picsum.photos/seed/picsum8/1200/1000.jpg",
-    name: "Emily Williams",
-    date: new Date("2024-06-15"),
-    feedback:
-      "The content of this course was excellent and very informative. However, I found the pace of the lectures to be a bit slow. The ability to adjust the playback speed would be a great improvement.",
-  },
-];
+
 
 const options = [
   {
@@ -90,10 +43,12 @@ const options = [
   },
 ];
 
-const StudentsRating = () => {
+const StudentsRating = ({courseID}) => {
+
+  const reviews = reviewData.filter((review) => review.courseID === courseID);
   const [selectedOption, setSelectedOption] = useState(options[4]);
   const [visibleReviews, setVisibleReviews] = useState(2);
-  const filteredAndSortedRatings = ratings
+  const filteredAndSortedRatings = reviews
     .filter((rating) => rating.rating <= parseInt(selectedOption.value))
     .sort((a, b) => b.rating - a.rating);
 
@@ -112,7 +67,7 @@ const StudentsRating = () => {
     <div className={style.mainContainer}>
       <div className={style.heading}>
         <div className={style.title}>Student&apos;s Feedback</div>
-        {ratings.length > 0 && (
+        {reviews.length > 0 && (
           <div className={style.filter}>
             <CustomSelect
               options={options}
@@ -139,6 +94,10 @@ const StudentsRating = () => {
       )}
     </div>
   );
+};
+
+StudentsRating.propTypes = {
+  courseID: PropTypes.string.isRequired,
 };
 
 export default StudentsRating;

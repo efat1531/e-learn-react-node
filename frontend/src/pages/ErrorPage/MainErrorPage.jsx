@@ -18,7 +18,7 @@ const MainErrorPage = () => {
         </button>
       </div>
       <div className={style.pictureContainer}>
-        <img src="/src/assets/images/Error404.png" />
+        <img src="/assets/images/Error404.png" />
       </div>
     </div>
   );

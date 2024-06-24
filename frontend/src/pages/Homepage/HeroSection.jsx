@@ -17,7 +17,7 @@ const HeroSection = () => {
       <div className={style.rightColumn}>
         <img
           className={style.heroImage}
-          src="/src/assets/images/sonorusEducation.png"
+          src="/assets/images/sonorusEducation.png"
           alt="Sonorus Education"
         />
       </div>
